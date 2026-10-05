@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "recipeApplication",
-    "slug": "recipeApplication",
+    "slug": "recipe-application",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
