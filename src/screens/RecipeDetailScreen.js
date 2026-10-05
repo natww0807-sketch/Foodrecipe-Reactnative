@@ -33,7 +33,10 @@ export default function RecipeDetailScreen(props) {
     >
       {/* recipe Image */}
       <View style={styles.imageContainer} testID="imageContainer">
-     
+        <Image
+          source={{ uri: recipe.recipeImage }}
+          style={styles.recipeImage}
+        />
       </View>
 
       {/* Back Button and Favorite Button */}
@@ -58,36 +61,64 @@ export default function RecipeDetailScreen(props) {
       </View>
 
       {/* recipe Description */}
-  
-        <View style={styles.contentContainer}>
-          {/* Title and Category */}
-          <View
-            style={styles.recipeDetailsContainer}
-            testID="recipeDetailsContainer"
-          >
-            <Text style={styles.recipeTitle} testID="recipeTitle">
-         
-              
-              </Text>
-            <Text style={styles.recipeCategory} testID="recipeCategory">
-              </Text>
+      <View style={styles.contentContainer}>
+        {/* Title and Category */}
+        <View
+          style={styles.recipeDetailsContainer}
+          testID="recipeDetailsContainer"
+        >
+          <Text style={styles.recipeTitle} testID="recipeTitle">
+            {recipe.recipeName}
+          </Text>
+          <Text style={styles.recipeCategory} testID="recipeCategory">
+            {recipe.recipeCategory}
+          </Text>
+        </View>
+
+        {/* Misc Info */}
+        <View style={styles.miscContainer} testID="miscContainer">
+          <View style={styles.miscItem}>
+            <Text style={styles.miscIcon}>🕒</Text>
+            <Text style={styles.miscText}>{recipe.recipeTime} 38 Min</Text>
           </View>
-          <View style={styles.miscContainer} testID="miscContainer">
-        
-      </View>
-
-      {/* Ingredients */}
-      <View style={styles.sectionContainer}>
-     
-      </View>
-
-      {/* Instructions */}
-      <View style={styles.sectionContainer} testID="sectionContainer">
-        
+          <View style={styles.miscItem}>
+            <Text style={styles.miscIcon}>🍽️</Text>
+            <Text style={styles.miscText}>{recipe.recipeServings} 03 Servings</Text>
+          </View>
+          <View style={styles.miscItem}>
+            <Text style={styles.miscIcon}>🔥</Text>
+            <Text style={styles.miscText}>{recipe.recipeCalories} 103 卡</Text>
+          </View>
+          <View style={styles.miscItem}>
+            <Text style={styles.miscIcon}>🥗</Text>
+            <Text style={styles.miscText}>{recipe.recipeType}Medium</Text>
+          </View>
         </View>
-          {/* Description */}
-         
+
+        {/* Ingredients */}
+        <View style={styles.sectionContainer} testID="sectionContainer">
+          <Text style={styles.sectionTitle}>成分</Text>
+          <View style={styles.ingredientsList} testID="ingredientsList">
+            {recipe.ingredients &&
+              recipe.ingredients.map((ingredient, index) => (
+                <View key={index} style={styles.ingredientItem}>
+                  <View style={styles.ingredientBullet} />
+                  <Text style={styles.ingredientText}>
+                    {ingredient.ingredientName} - {ingredient.ingredientMeasure}
+                  </Text>
+                </View>
+              ))}
+          </View>
         </View>
+
+        {/* Instructions */}
+        <View style={styles.sectionContainer} testID="sectionContainer">
+          <Text style={styles.sectionTitle}>说明</Text>
+          <Text style={styles.instructionsText}>
+            {recipe.recipeInstructions}
+          </Text>
+        </View>
+      </View>
     </ScrollView>
   );
 }
